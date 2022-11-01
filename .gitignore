@@ -1,0 +1,7 @@
+*.sqlite
+*.csv
+*.db
+*.pyc
+__pycache__
+.vscode
+*webScrapper

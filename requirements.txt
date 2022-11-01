@@ -1,0 +1,7 @@
+certifi
+
+pandas
+numpy
+beautifulsoup4
+
+sklearn
