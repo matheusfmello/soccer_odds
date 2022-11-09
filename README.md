@@ -22,7 +22,6 @@ The first results are not satisfactory yet. Some of the improvements ideas to be
 
 - Scrapping more matches results to enrich the training set
 - Scrapping Football Manager players attributes, as they are a better source of information, especially in minor leagues
-- Scrapping new data on future matches and their predicted lineups
 
 - Predicting not only the match result, but also the ammount of goals and other metrics
 - Creating a trigger advising if a match odd differs from the model's predicted results (profit opportunities)

@@ -2,6 +2,7 @@ certifi
 
 pandas
 numpy
-beautifulsoup4
+selenium
+requests
 
 sklearn
