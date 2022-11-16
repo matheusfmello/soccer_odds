@@ -17,7 +17,7 @@ class Data:
 
         if dbPath is None:
 
-            baseFolder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            baseFolder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             dataFolder = os.path.join(baseFolder, 'data')
             self.dbPath = os.path.join(dataFolder, "database.sqlite")
         else:

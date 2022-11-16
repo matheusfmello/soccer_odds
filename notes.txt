@@ -2,13 +2,14 @@
 
 - Matches data
 ---------------------------------------------------------------------------------------------------------------------------------
-https://www.football-data.co.uk/data.php
+- Old Matches
+https://fbref.com/en/
 
-- Predicted Lineups
----------------------------------------------------------------------------------------------------------------------------------
-https://www.sportsgambler.com/lineups/football/
+until 27/08/2017
 
-I could webscrap predicted lineups from this website in the future.
+- Today Matches 
+
+https://sofascore.com/
 
 
 - Match Columns info
