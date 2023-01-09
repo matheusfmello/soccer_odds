@@ -121,7 +121,11 @@ class scrapper:
                         scoreHome, scoreAway = self._getScore(score.get_text())
                         self.scoresHome.append(scoreHome)
                         self.scoresAway.append(scoreAway)
-                        matchesLinks.append(score.find('a', {'href':re.compile('^/')})['href'])
+                        if np.isnan(scoreHome):
+                            # random link whose match has no info
+                            matchesLinks.append('/en/matches/0a7d1069/Fleetwood-Town-Lincoln-City-April-13-2020-League-One')
+                        else:
+                            matchesLinks.append(score.find('a', {'href':re.compile('^/')})['href'])
 
                     if table.find_all('td', {'data-stat':'home_xg'}):
                         homeXG = table.find_all('td', {'data-stat':'home_xg'})
@@ -185,6 +189,20 @@ class scrapper:
         htmlMatch = urlopen(self.originLink + url)
         bsMatch = BeautifulSoup(htmlMatch.read(), 'html.parser')
         homeLineup = bsMatch.find('div', {'class':'lineup', 'id':'a'})
+        if not homeLineup:
+            homePlayers = []
+            awayPlayers = []
+            for i in range(0,11):
+                homePlayers.append(np.nan)
+                awayPlayers.append(np.nan)
+            yellowCardsHome = np.nan
+            redCardsHome = np.nan
+            yellowCardsAway = np.nan
+            redCardsAway = np.nan
+            matchStatsList.extend([yellowCardsHome, redCardsHome, yellowCardsAway, redCardsAway])
+            for key, value in stats.items():
+                matchStatsList.extend(value)
+            return homePlayers + awayPlayers + matchStatsList
         homePlayers = homeLineup.find_all('a', {'href':re.compile('^/en/players')})[0:11]
         homePlayers = [player.get_text() for player in homePlayers]
         awayLineup = bsMatch.find('div', {'class':'lineup', 'id':'b'})
@@ -204,7 +222,10 @@ class scrapper:
             columnValues = [value.get_text() for value in column]
             for index, value in enumerate(columnValues):
                 if not value.isdigit() and value in stats:
-                    stats[value] = [int(columnValues[index-1]), int(columnValues[index+1])]
+                    try:
+                        stats[value] = [int(columnValues[index-1]), int(columnValues[index+1])]
+                    except ValueError:
+                        stats[value] = [int(columnValues[index-1]) if columnValues[index-1].isdigit() else np.nan, int(columnValues[index+1]) if columnValues[index+1].isdigit() else np.nan]
         for key, value in stats.items():
             matchStatsList.extend(value)
         
@@ -259,8 +280,8 @@ class scrapper:
         self.driver = self._getDriver(path=self.path)
         self.driver.get("https://www.sofascore.com/")
         
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/main/div/div[2]/div[2]/div/div[1]/div[3]/label/span")))
-        oddsButton = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/main/div/div[2]/div[2]/div/div[1]/div[3]/label/span")
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, "slider")))
+        oddsButton = self.driver.find_element(By.CLASS_NAME, "slider")
         oddsButton.click()
 
         homeTeam=[]
