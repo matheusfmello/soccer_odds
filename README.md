@@ -28,6 +28,8 @@ The first results are not satisfactory yet. Some of the improvements ideas to be
 
 # Update Report
 
-**2022/11/09 -** Implemented scrapper to get today matches data.
+**2022/11/09 -** Implemented scraper to get today matches data.
 
-**2022/11/16 -** Implemented the old matches scrapper, which provides several amount of data in according to the user needs.
+**2022/11/16 -** Implemented the old matches scraper, which provides several amount of data in according to the user needs.
+
+** 2023/03/01 -** Implemented scraper for player attributes, PrepareDf and first model.
