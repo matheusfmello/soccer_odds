@@ -1,8 +1,12 @@
-certifi
-
-pandas
-numpy
+beautifulsoup4
 selenium
 requests
 
+pandas
+numpy
+datetime
+rapidfuzz
+
 sklearn
+xgboost
+catboost

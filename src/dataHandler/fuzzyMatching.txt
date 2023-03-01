@@ -1,0 +1,3 @@
+
+This folder contains the data handling functionalities. In here, we want to create a module to tidy the datasets extracted in the
+scrapper module. 

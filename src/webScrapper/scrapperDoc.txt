@@ -1,0 +1,4 @@
+
+
+This folder contains the scraper class, which has different functionalities to extract soccer data from different sources.
+Those functionalities are explained in scrapper.py and each notebook has an example on how to use them.
